@@ -3,35 +3,533 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Advance Defenders</title>
-
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #050816;
-      font-family: Arial, sans-serif;
-      overflow: hidden;
-    }
-
-    h1 {
-      color: #00cfff;
-      font-size: 5rem;
-      text-transform: uppercase;
-      letter-spacing: 4px;
-      text-shadow:
-        0 0 5px #00cfff,
-        0 0 10px #00cfff,
-        0 0 20px #0099ff,
-        0 0 40px #0066ff;
-    }
-  </style>
+  <meta name="description" content="AdvanceDefenders — practical cybersecurity, secure infrastructure, endpoint hardening, and incident response for small businesses.">
+  <title>AdvanceDefenders | Security That Actually Defends Your Business</title>
+  <!-- Google Fonts: Inter (body) + Orbitron (brand accents) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <h1>Advance Defenders</h1>
+  <!-- Page load overlay -->
+  <div id="page-loader" class="page-loader" aria-hidden="true">
+    <div class="page-loader__inner">
+      <div class="page-loader__logo">AdvanceDefenders</div>
+      <div class="page-loader__bar"><span></span></div>
+      <p class="page-loader__text">Initializing secure channel…</p>
+    </div>
+  </div>
+
+  <!-- Cursor glow layer (desktop) -->
+  <div id="cursor-glow" class="cursor-glow" aria-hidden="true"></div>
+
+  <!-- Fixed particle canvas -->
+  <canvas id="particle-canvas" class="particle-canvas" aria-hidden="true"></canvas>
+
+  <header class="site-header" id="top">
+    <div class="container header__inner">
+      <a href="#top" class="logo">Advance<span>Defenders</span></a>
+      <nav class="nav" aria-label="Primary">
+        <button type="button" class="nav__toggle" aria-expanded="false" aria-controls="nav-menu">
+          <span class="nav__toggle-bar"></span>
+          <span class="nav__toggle-bar"></span>
+          <span class="nav__toggle-bar"></span>
+          <span class="visually-hidden">Menu</span>
+        </button>
+        <ul id="nav-menu" class="nav__list">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#why">Why Us</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#checkup">Security Checkup</a></li>
+          <li><a href="#packages">Packages</a></li>
+          <li><a href="#incident">Incident Response</a></li>
+          <li><a href="#contact" class="nav__cta">Assessment</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero__grid" aria-hidden="true"></div>
+      <div class="hero__glow hero__glow--1" aria-hidden="true"></div>
+      <div class="hero__glow hero__glow--2" aria-hidden="true"></div>
+
+      <div class="container hero__layout">
+        <div class="hero__content reveal" data-reveal>
+          <p class="eyebrow">MSSP-Style Defense · SMB Focus</p>
+          <h1 class="hero__title">
+            <span class="hero__brand">AdvanceDefenders</span>
+          </h1>
+          <p class="hero__headline">Security That Actually Defends Your Business.</p>
+          <p class="hero__subtitle">
+            Practical cybersecurity, secure infrastructure, endpoint hardening, and incident response support
+            for small businesses that need real protection without enterprise complexity.
+          </p>
+          <div class="hero__actions">
+            <a href="#contact" class="btn btn--primary">Request Security Assessment</a>
+            <a href="#services" class="btn btn--ghost">View Services</a>
+          </div>
+        </div>
+
+        <!-- Mock SOC / floating UI -->
+        <div class="hero__panels" aria-hidden="true">
+          <div class="soc-panel soc-panel--main reveal" data-reveal data-reveal-delay="1">
+            <div class="soc-panel__header">
+              <span class="soc-dot"></span>
+              <span>Operations Console</span>
+              <span class="soc-panel__tag">LIVE</span>
+            </div>
+            <div class="soc-panel__body">
+              <div class="soc-row"><span>Identity signals</span><span class="soc-val soc-val--ok">Stable</span></div>
+              <div class="soc-row"><span>Endpoint sync</span><span class="soc-val">12 agents</span></div>
+              <div class="soc-row"><span>Policy drift</span><span class="soc-val soc-val--warn">Review</span></div>
+              <div class="soc-chart">
+                <div class="soc-chart__bar" style="--h: 40%"></div>
+                <div class="soc-chart__bar" style="--h: 65%"></div>
+                <div class="soc-chart__bar" style="--h: 45%"></div>
+                <div class="soc-chart__bar" style="--h: 80%"></div>
+                <div class="soc-chart__bar" style="--h: 55%"></div>
+                <div class="soc-chart__bar" style="--h: 70%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="float-card float-card--score reveal" data-reveal data-reveal-delay="2">
+            <span class="float-card__label">Security score</span>
+            <span class="float-card__value">87</span>
+            <span class="float-card__sub">Posture improving</span>
+          </div>
+
+          <div class="float-card float-card--threat reveal" data-reveal data-reveal-delay="3">
+            <span class="float-card__label">Threat activity</span>
+            <span class="float-card__value float-card__value--sm">3 blocked</span>
+            <span class="float-card__sub">Last 24h · email + web</span>
+          </div>
+
+          <div class="float-card float-card--edr reveal" data-reveal data-reveal-delay="4">
+            <span class="float-card__label">Endpoint protection</span>
+            <span class="float-card__value float-card__value--sm">EDR · Active</span>
+            <span class="float-card__sub">Policies enforced</span>
+          </div>
+
+          <div class="soc-mini reveal" data-reveal data-reveal-delay="2">
+            <div class="soc-mini__line"></div>
+            <div class="soc-mini__line soc-mini__line--short"></div>
+            <div class="soc-mini__line"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section section--services" id="services">
+      <div class="container">
+        <header class="section__header reveal" data-reveal>
+          <p class="eyebrow">Capabilities</p>
+          <h2 class="section__title">Services built for real-world defense</h2>
+          <p class="section__lead">From infrastructure to validation — clear deliverables, evidence you can use, and remediation that sticks.</p>
+        </header>
+
+        <div class="service-grid">
+          <article class="service-card reveal" data-reveal>
+            <div class="service-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3 class="service-card__title">Secure Infrastructure &amp; Hardening</h3>
+            <p class="service-card__text">Microsoft 365 setup, MFA, secure device configuration, backups, firewall/router review, endpoint hardening.</p>
+          </article>
+
+          <article class="service-card reveal" data-reveal>
+            <div class="service-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M7 22h10"/><path d="M12 18v4"/></svg>
+            </div>
+            <h3 class="service-card__title">Endpoint Protection &amp; EDR Deployment</h3>
+            <p class="service-card__text">Microsoft Defender, EDR tools, endpoint cleanup, protection configuration, and security baseline setup.</p>
+          </article>
+
+          <article class="service-card reveal" data-reveal>
+            <div class="service-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+            </div>
+            <h3 class="service-card__title">Network Security Setup</h3>
+            <p class="service-card__text">Secure Wi-Fi, firewall configuration, VPN setup, guest separation, port exposure review, basic segmentation.</p>
+          </article>
+
+          <article class="service-card reveal" data-reveal>
+            <div class="service-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+            </div>
+            <h3 class="service-card__title">Incident Response &amp; Hacked Remediation</h3>
+            <p class="service-card__text">Email compromise cleanup, account recovery, malware cleanup, breach containment, ransomware triage, recovery assistance.</p>
+          </article>
+
+          <article class="service-card reveal" data-reveal>
+            <div class="service-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+            </div>
+            <h3 class="service-card__title">Audit &amp; Compliance Readiness</h3>
+            <p class="service-card__text">HIPAA-lite, PCI-lite, policy starters, evidence collection, security documentation, remediation roadmaps.</p>
+          </article>
+
+          <article class="service-card reveal" data-reveal>
+            <div class="service-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+            <h3 class="service-card__title">Vulnerability &amp; Security Validation</h3>
+            <p class="service-card__text">Vulnerability scanning, external exposure review, phishing simulations, remediation validation, improvement planning.</p>
+          </article>
+
+          <article class="service-card reveal" data-reveal>
+            <div class="service-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 11c0 3-4 6-4 6h8s-4-3-4-6V7a4 4 0 10-8 0v4z"/></svg>
+            </div>
+            <h3 class="service-card__title">Microsoft 365 &amp; Identity Security</h3>
+            <p class="service-card__text">Entra ID basics, MFA enforcement, conditional access guidance, secure sharing, user access reviews.</p>
+          </article>
+
+          <article class="service-card reveal" data-reveal>
+            <div class="service-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <h3 class="service-card__title">Security Awareness &amp; Phishing Defense</h3>
+            <p class="service-card__text">User training, phishing defense guidance, awareness sessions, practical security education.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY -->
+    <section class="section section--why" id="why">
+      <div class="container">
+        <div class="why__grid">
+          <div class="why__intro reveal" data-reveal>
+            <p class="eyebrow">Positioning</p>
+            <h2 class="section__title">Why AdvanceDefenders</h2>
+            <p class="why__quote">
+              Most small businesses do not need enterprise complexity. They need secure systems, clear guidance,
+              fast remediation, and someone who can turn cybersecurity findings into action.
+            </p>
+          </div>
+          <ul class="value-list">
+            <li class="value-card reveal" data-reveal><span class="value-card__accent"></span><strong>SMB-focused security</strong><span>Controls sized to your risk and team.</span></li>
+            <li class="value-card reveal" data-reveal><span class="value-card__accent"></span><strong>Practical remediation</strong><span>Fixes prioritized by impact, not buzzwords.</span></li>
+            <li class="value-card reveal" data-reveal><span class="value-card__accent"></span><strong>No enterprise bloat</strong><span>No shelf-ware — what you need, implemented.</span></li>
+            <li class="value-card reveal" data-reveal><span class="value-card__accent"></span><strong>Clear reports</strong><span>Readable evidence for leadership and insurers.</span></li>
+            <li class="value-card reveal" data-reveal><span class="value-card__accent"></span><strong>Secure cloud-first environments</strong><span>M365, identity, endpoints aligned.</span></li>
+            <li class="value-card reveal" data-reveal><span class="value-card__accent"></span><strong>Defense-first mindset</strong><span>Assume breach — reduce blast radius.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section section--process" id="process">
+      <div class="container">
+        <header class="section__header reveal" data-reveal>
+          <p class="eyebrow">Workflow</p>
+          <h2 class="section__title">From assessment to sustained defense</h2>
+        </header>
+        <ol class="process-steps">
+          <li class="process-step reveal" data-reveal>
+            <span class="process-step__num">01</span>
+            <h3 class="process-step__title">Assess</h3>
+            <p>Identify current risks, weak configurations, exposed services, and endpoint gaps.</p>
+          </li>
+          <li class="process-step reveal" data-reveal>
+            <span class="process-step__num">02</span>
+            <h3 class="process-step__title">Harden</h3>
+            <p>Secure Microsoft 365, endpoints, backups, identity, firewall settings, and remote access.</p>
+          </li>
+          <li class="process-step reveal" data-reveal>
+            <span class="process-step__num">03</span>
+            <h3 class="process-step__title">Validate</h3>
+            <p>Review improvements, verify fixes, and document evidence.</p>
+          </li>
+          <li class="process-step reveal" data-reveal>
+            <span class="process-step__num">04</span>
+            <h3 class="process-step__title">Defend</h3>
+            <p>Ongoing recommendations, monitoring options, and incident response support.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- SECURITY CHECKUP TOOL -->
+    <section class="section section--checkup" id="checkup">
+      <div class="container">
+        <header class="section__header reveal" data-reveal>
+          <p class="eyebrow">Internal capability</p>
+          <h2 class="section__title">AdvanceDefenders Security Checkup</h2>
+          <p class="section__lead">
+            A local Windows security auditing and reporting tool used to identify configuration gaps, endpoint risks,
+            hardening opportunities, and security posture issues.
+          </p>
+        </header>
+
+        <div class="checkup__highlights reveal" data-reveal>
+          <ul class="pill-list">
+            <li>Local-first</li>
+            <li>Read-only by default</li>
+            <li>Evidence-based findings</li>
+            <li>Human-readable reports</li>
+            <li>Hardening recommendations</li>
+            <li>Technician-reviewed output</li>
+          </ul>
+        </div>
+
+        <div class="checkup-ui">
+          <div class="checkup-ui__sidebar reveal" data-reveal>
+            <div class="checkup-brand">AD · Checkup</div>
+            <div class="checkup-nav">Dashboard</div>
+            <div class="checkup-nav checkup-nav--active">Local audit</div>
+            <div class="checkup-nav">Reports</div>
+          </div>
+          <div class="checkup-ui__main">
+            <div class="checkup-grid">
+              <div class="checkup-card reveal" data-reveal><span class="checkup-card__k">Security score</span><span class="checkup-card__v">82 / 100</span></div>
+              <div class="checkup-card reveal" data-reveal><span class="checkup-card__k">BitLocker</span><span class="checkup-card__v checkup-card__v--ok">Enabled</span></div>
+              <div class="checkup-card reveal" data-reveal><span class="checkup-card__k">Defender</span><span class="checkup-card__v checkup-card__v--ok">Real-time on</span></div>
+              <div class="checkup-card reveal" data-reveal><span class="checkup-card__k">Firewall</span><span class="checkup-card__v checkup-card__v--ok">All profiles on</span></div>
+              <div class="checkup-card reveal" data-reveal><span class="checkup-card__k">Local admin review</span><span class="checkup-card__v checkup-card__v--warn">2 accounts</span></div>
+              <div class="checkup-card reveal" data-reveal><span class="checkup-card__k">RDP exposure</span><span class="checkup-card__v checkup-card__v--ok">Not exposed</span></div>
+              <div class="checkup-card reveal" data-reveal><span class="checkup-card__k">SMBv1</span><span class="checkup-card__v checkup-card__v--ok">Disabled</span></div>
+              <div class="checkup-card reveal" data-reveal><span class="checkup-card__k">Backup status</span><span class="checkup-card__v checkup-card__v--warn">Verify policy</span></div>
+              <div class="checkup-card checkup-card--wide reveal" data-reveal><span class="checkup-card__k">Report generated</span><span class="checkup-card__v">AD_Checkup_Report_2026-05-13.pdf</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PACKAGES -->
+    <section class="section section--packages" id="packages">
+      <div class="container">
+        <header class="section__header reveal" data-reveal>
+          <p class="eyebrow">Engagement models</p>
+          <h2 class="section__title">Tiered security packages</h2>
+          <p class="section__lead">Structured offerings with clear scope. Pricing depends on environment size and complexity — request a quote to align to your business.</p>
+        </header>
+
+        <div class="tier-grid">
+          <article class="tier-card reveal" data-reveal>
+            <div class="tier-card__glow"></div>
+            <h3 class="tier-card__title">Secure Infrastructure &amp; Hardening</h3>
+            <p class="tier-card__subtitle">Build, configure, and secure the foundation.</p>
+            <p class="tier-card__position">Best for small businesses that need their systems built or hardened correctly.</p>
+            <ul class="tier-card__list">
+              <li>Microsoft 365 security setup</li>
+              <li>MFA deployment</li>
+              <li>Windows endpoint hardening</li>
+              <li>Defender configuration</li>
+              <li>BitLocker review</li>
+              <li>Backup setup / review</li>
+              <li>Firewall / router review</li>
+              <li>Secure remote access setup</li>
+              <li>Endpoint cleanup</li>
+              <li>Security checkup report</li>
+            </ul>
+            <p class="tier-card__price">Starting at — <em>request quote</em></p>
+            <a href="#contact" class="btn btn--primary btn--block">Request Quote</a>
+          </article>
+
+          <article class="tier-card tier-card--featured reveal" data-reveal>
+            <div class="tier-card__badge">Popular</div>
+            <div class="tier-card__glow"></div>
+            <h3 class="tier-card__title">Audit &amp; Compliance Readiness</h3>
+            <p class="tier-card__subtitle">Prepare, document, and close security gaps.</p>
+            <p class="tier-card__position">Best for audits, insurance reviews, or regulated customer requirements.</p>
+            <p class="tier-card__includes">Everything in Tier 1, plus:</p>
+            <ul class="tier-card__list">
+              <li>Compliance readiness review</li>
+              <li>Security gap assessment</li>
+              <li>Policy starter templates</li>
+              <li>Evidence collection</li>
+              <li>Remediation roadmap</li>
+              <li>HIPAA-lite / PCI-lite alignment</li>
+              <li>Executive security summary</li>
+              <li>Audit-ready documentation package</li>
+            </ul>
+            <p class="tier-card__price">Starting at — <em>request quote</em></p>
+            <a href="#contact" class="btn btn--primary btn--block">Request Quote</a>
+          </article>
+
+          <article class="tier-card reveal" data-reveal>
+            <div class="tier-card__glow"></div>
+            <h3 class="tier-card__title">Advanced Security Validation</h3>
+            <p class="tier-card__subtitle">Assess, test, and strengthen defenses.</p>
+            <p class="tier-card__position">Best for deeper validation, testing, and continuous improvement.</p>
+            <p class="tier-card__includes">Everything in Tier 1 &amp; 2, plus:</p>
+            <ul class="tier-card__list">
+              <li>Vulnerability assessment</li>
+              <li>External exposure review</li>
+              <li>Phishing simulation</li>
+              <li>Advanced hardening validation</li>
+              <li>Incident response support</li>
+              <li>Logging / monitoring review</li>
+              <li>Post-remediation verification</li>
+              <li>Attack surface review</li>
+            </ul>
+            <p class="tier-card__price">Starting at — <em>request quote</em></p>
+            <a href="#contact" class="btn btn--primary btn--block">Request Quote</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- INCIDENT RESPONSE -->
+    <section class="section section--incident" id="incident">
+      <div class="container">
+        <div class="incident__layout">
+          <div class="incident__copy reveal" data-reveal>
+            <p class="eyebrow eyebrow--urgent">Incident response</p>
+            <h2 class="section__title">When minutes matter, we move with purpose.</h2>
+            <p class="incident__lead">
+              Fast, calm, professional support to contain damage, restore access safely, and harden against repeat compromise.
+            </p>
+            <a href="#contact" class="btn btn--primary">Get incident help</a>
+          </div>
+          <ul class="incident__list">
+            <li class="incident__item reveal" data-reveal>Hacked email remediation</li>
+            <li class="incident__item reveal" data-reveal>Microsoft 365 account compromise cleanup</li>
+            <li class="incident__item reveal" data-reveal>Malicious inbox rule review</li>
+            <li class="incident__item reveal" data-reveal>Password reset &amp; recovery guidance</li>
+            <li class="incident__item reveal" data-reveal>Malware cleanup</li>
+            <li class="incident__item reveal" data-reveal>Ransomware triage</li>
+            <li class="incident__item reveal" data-reveal>Breach containment</li>
+            <li class="incident__item reveal" data-reveal>Recovery assistance</li>
+            <li class="incident__item reveal" data-reveal>Post-incident hardening</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLOUD-FIRST -->
+    <section class="section section--cloud" id="cloud">
+      <div class="container">
+        <div class="cloud__grid">
+          <div class="cloud__block reveal" data-reveal>
+            <p class="eyebrow">Cloud-first SMB</p>
+            <h2 class="section__title">Built for how you actually work</h2>
+            <p class="section__lead">
+              Modern small businesses rely on Microsoft 365, Google Workspace, SaaS apps, laptops, BYOD, cloud storage, and remote work.
+              AdvanceDefenders aligns controls to that reality — not to a legacy datacenter playbook.
+            </p>
+          </div>
+          <div class="cloud__focus reveal" data-reveal>
+            <h3 class="cloud__focus-title">We focus on</h3>
+            <ul class="cloud__tags">
+              <li>Identity security</li>
+              <li>MFA</li>
+              <li>Endpoint hardening</li>
+              <li>Secure file sharing</li>
+              <li>Backups</li>
+              <li>Device compliance</li>
+              <li>Phishing defense</li>
+              <li>Practical security controls</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section section--contact" id="contact">
+      <div class="container container--narrow">
+        <header class="section__header reveal" data-reveal>
+          <p class="eyebrow">Contact</p>
+          <h2 class="section__title">Request a Security Assessment</h2>
+          <p class="section__lead">Tell us about your environment. We respond with next steps — no pressure, no jargon walls.</p>
+        </header>
+
+        <!-- Replace YOUR_FORM_ID with your Formspree form ID: https://formspree.io -->
+        <form class="contact-form reveal" data-reveal
+          action="https://formspree.io/f/YOUR_FORM_ID"
+          method="POST"
+        >
+          <div class="form__row">
+            <label class="form__label" for="name">Name</label>
+            <input class="form__input" id="name" name="name" type="text" autocomplete="name" required placeholder="Your name">
+          </div>
+          <div class="form__row">
+            <label class="form__label" for="company">Company</label>
+            <input class="form__input" id="company" name="company" type="text" autocomplete="organization" required placeholder="Company name">
+          </div>
+          <div class="form__row form__row--half">
+            <div>
+              <label class="form__label" for="email">Email</label>
+              <input class="form__input" id="email" name="email" type="email" autocomplete="email" required placeholder="you@company.com">
+            </div>
+            <div>
+              <label class="form__label" for="phone">Phone</label>
+              <input class="form__input" id="phone" name="phone" type="tel" autocomplete="tel" placeholder="Optional">
+            </div>
+          </div>
+          <div class="form__row">
+            <label class="form__label" for="size">Company Size</label>
+            <select class="form__input" id="size" name="company_size" required>
+              <option value="" disabled selected>Select range</option>
+              <option>1–10</option>
+              <option>11–50</option>
+              <option>51–250</option>
+              <option>250+</option>
+            </select>
+          </div>
+          <div class="form__row">
+            <label class="form__label" for="service-interest">Services Needed</label>
+            <select class="form__input" id="service-interest" name="services_needed" required>
+              <option value="" disabled selected>Select primary need</option>
+              <option>Infrastructure &amp; hardening</option>
+              <option>Endpoint / EDR</option>
+              <option>Network security</option>
+              <option>Incident response</option>
+              <option>Compliance readiness</option>
+              <option>Validation / testing</option>
+              <option>M365 / identity</option>
+              <option>Awareness / phishing</option>
+              <option>Other / multiple</option>
+            </select>
+          </div>
+          <div class="form__row">
+            <label class="form__label" for="message">Message</label>
+            <textarea class="form__input form__textarea" id="message" name="message" rows="4" placeholder="Brief context: platforms, urgency, regulatory needs…"></textarea>
+          </div>
+          <input type="text" name="_gotcha" class="form__hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button type="submit" class="btn btn--primary btn--block">Request a Security Assessment</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <span class="logo logo--footer">Advance<span>Defenders</span></span>
+        <p class="footer__tagline">Cybersecurity · Secure Infrastructure · Incident Response</p>
+        <p class="footer__copy">&copy; <span id="year"></span> AdvanceDefenders. All rights reserved.</p>
+        <p class="footer__email"><a href="mailto:hello@advancedefenders.com">hello@advancedefenders.com</a></p>
+        <div class="footer__social" aria-label="Social links (placeholders)">
+          <a href="#" class="footer__social-link" aria-label="LinkedIn (placeholder)">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.05h.05c.53-1 1.84-2.05 3.79-2.05 4.05 0 4.8 2.67 4.8 6.13V23h-4v-6.35c0-1.52-.03-3.48-2.12-3.48-2.12 0-2.44 1.65-2.44 3.36V23h-4V8z"/></svg>
+          </a>
+          <a href="#" class="footer__social-link" aria-label="X (placeholder)">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+      </div>
+      <nav class="footer__nav" aria-label="Footer services">
+        <span class="footer__nav-title">Services</span>
+        <a href="#services">All services</a>
+        <a href="#packages">Packages</a>
+        <a href="#incident">Incident response</a>
+        <a href="#checkup">Security Checkup</a>
+        <a href="#contact">Assessment</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
