@@ -376,8 +376,8 @@ a:hover {
 .hero {
   position: relative;
   z-index: 1;
-  min-height: calc(100vh - var(--header-h));
-  padding: clamp(3rem, 8vw, 5rem) 0 4rem;
+  min-height: auto;
+  padding: clamp(3rem, 8vw, 5rem) 0 clamp(3rem, 6vw, 4rem);
   overflow: hidden;
 }
 
