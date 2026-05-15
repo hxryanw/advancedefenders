@@ -395,11 +395,14 @@
           <p class="section__lead">Tell us about your environment. We respond with next steps — no pressure, no jargon walls.</p>
         </header>
 
-        <!-- Replace YOUR_FORM_ID with your Formspree form ID: https://formspree.io -->
+        <!-- Formspree: submissions POST to your form endpoint (Basic HTML integration). -->
         <form class="contact-form reveal" data-reveal
-          action="https://formspree.io/f/YOUR_FORM_ID"
+          action="https://formspree.io/f/xdabrwqn"
           method="POST"
         >
+          <!-- Optional Formspree fields: https://help.formspree.io/hc/en-us/articles/360036939374-Form-Setup-Guide -->
+          <input type="hidden" name="_subject" value="AdvanceDefenders — security assessment request">
+          <input type="hidden" name="_next" value="https://advancedefenders.com/#contact">
           <div class="form__row">
             <label class="form__label" for="name">Name</label>
             <input class="form__input" id="name" name="name" type="text" autocomplete="name" required placeholder="Your name">
